@@ -1,0 +1,15 @@
+kind: Suite
+apiVersion: test.gatekeeper.sh/v1alpha1
+tests:
+- name: allowed-repos
+  template: template-and-constraints/template.yaml
+  constraint: template-and-constraints/constraint.yaml
+  cases:
+  - name: example-allowed
+    object: example-ingress-allowed.yaml
+    assertions:
+    - violations: no
+  - name: example-disallowed
+    object: example-ingress-disallowed.yaml
+    assertions:
+    - violations: yes
